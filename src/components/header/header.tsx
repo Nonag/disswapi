@@ -9,13 +9,37 @@ export type HeaderProps = object;
  */
 export const Header: FC<HeaderProps> = ({ ...props }) => {
   return (
-    <header className="bg-white" {...props}>
+    <header className="bg-primary" {...props}>
       <nav
         aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className="flex max-w-7xl gap-4 p-6"
       >
         <Button asChild>
+          <Link href="/">Home</Link>
+        </Button>
+
+        <Button asChild>
           <Link href="/films">Films</Link>
+        </Button>
+
+        <Button asChild>
+          <Link href="/people">People</Link>
+        </Button>
+
+        <Button asChild>
+          <Link href="/planets">Planets</Link>
+        </Button>
+
+        <Button asChild>
+          <Link href="/species">Species</Link>
+        </Button>
+
+        <Button asChild>
+          <Link href="/starships">Starships</Link>
+        </Button>
+
+        <Button asChild>
+          <Link href="/vehicles">vehicles</Link>
         </Button>
       </nav>
     </header>
