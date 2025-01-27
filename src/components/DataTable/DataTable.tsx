@@ -33,9 +33,7 @@ export function DataTable<TData, TValue>({
     data: data.results,
     getCoreRowModel: getCoreRowModel(),
     onRowSelectionChange: setRowSelection,
-    state: {
-      rowSelection,
-    },
+    state: { rowSelection },
   });
 
   const rows = table.getRowModel().rows;
