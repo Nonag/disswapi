@@ -1,71 +1,44 @@
-"use client";
+'use client';
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 
+import { Card, CardContent } from '@/components/ui/card';
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  ChartConfig,
+  type ChartConfig,
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
+} from '@/components/ui/chart';
 
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-];
+export interface DataChartProps<DData> {
+  chartConfig: ChartConfig;
+  data: DData[];
+}
 
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "hsl(var(--chart-1))",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "hsl(var(--chart-2))",
-  },
-} satisfies ChartConfig;
-
-export function DataChart() {
+export function DataChart<DData>({ chartConfig, data }: DataChartProps<DData>) {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Bar Chart - Multiple</CardTitle>
-
-        <CardDescription>January - June 2024</CardDescription>
-      </CardHeader>
-
+    <Card className="shadow-none">
       <CardContent>
-        <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
+        <ChartContainer className="min-h-[100px] w-full" config={chartConfig}>
+          <BarChart accessibilityLayer data={data}>
             <CartesianGrid vertical={false} />
 
             <XAxis
-              dataKey="month"
-              tickLine={false}
-              tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
+              dataKey="column"
+              tickLine={false}
+              tickMargin={4}
             />
 
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="dashed" />}
-            />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
 
-            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
+            <ChartLegend content={<ChartLegendContent />} />
 
-            <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+            {Object.entries(chartConfig).map(([key, value]) => (
+              <Bar key={key} dataKey={key} fill={value.color} radius={4} />
+            ))}
           </BarChart>
         </ChartContainer>
       </CardContent>

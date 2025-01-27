@@ -64,13 +64,13 @@ export const columns: ColumnDef<Film>[] = [
     cell: ({ row }) => row.original.starships.length,
   },
   {
-    accessorKey: "vehicles",
-    header: "Vehicles",
-    cell: ({ row }) => row.original.vehicles.length,
-  },
-  {
     accessorKey: "species",
     header: "Species",
     cell: ({ row }) => row.original.species.length,
+  },
+  {
+    accessorKey: "vehicles",
+    header: "Vehicles",
+    cell: ({ row }) => row.original.vehicles.length,
   },
 ];
