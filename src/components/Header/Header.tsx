@@ -9,11 +9,8 @@ export type HeaderProps = object;
  */
 export const Header: FC<HeaderProps> = ({ ...props }) => {
   return (
-    <header className="bg-primary" {...props}>
-      <nav
-        aria-label="Global"
-        className="flex max-w-7xl gap-4 p-6"
-      >
+    <header className="border-b" {...props}>
+      <nav aria-label="Global" className="flex p-4 gap-4">
         <Button asChild>
           <Link href="/">Home</Link>
         </Button>
@@ -39,7 +36,7 @@ export const Header: FC<HeaderProps> = ({ ...props }) => {
         </Button>
 
         <Button asChild>
-          <Link href="/vehicles">vehicles</Link>
+          <Link href="/vehicles">Vehicles</Link>
         </Button>
       </nav>
     </header>
